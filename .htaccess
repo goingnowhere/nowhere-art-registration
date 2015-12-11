@@ -1,0 +1,10 @@
+# Any request coming to this directory and subdirectories will
+# be handled by the server.cgi script (which runs on nodejs)
+
+Options +ExecCGI
+AddHandler cgi-script cgi
+
+RewriteEngine on
+RewriteRule (.*) server.cgi
+
+SetEnv cache-enable none

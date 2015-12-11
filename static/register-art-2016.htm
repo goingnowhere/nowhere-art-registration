@@ -1,0 +1,776 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.3/semantic.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.3/semantic.min.js"></script>
+    <style>
+      ::-webkit-input-placeholder { color: grey; }
+      :-moz-placeholder { color: grey; opacity:  1; }
+      ::-moz-placeholder { color: grey; opacity:  1; }
+      :-ms-input-placeholder { color: grey; }
+
+      body { margin-top: 10px }
+      label .description{ font-size: 0.9em}
+      label .description.orange{ color: #e07b53;}
+      .input.eight.wide {width:50% !important;}
+      .ui.icon.header .icon{font-size: 2.5em;}
+      .ui.form .field>label{font-size: 1em;}
+      .ui.inverted.orange.message { color: black }
+      .icon.asterisk { color: black }
+      .ui.orange.segment { margin-top: 2.5em }
+    </style>
+  </head>
+  <body>
+  <div class="ui centered stackable grid">
+    <div class="nine wide column">
+
+      <h1 class="ui center aligned humongous header" style="font-size: 3em;">Nowhere 2016 Art Registration</h1>
+      <div class="ui deep stacked orange segment">
+        <p><b>Welcome !</b> If you want to bring any kind of art to Nowhere you are in the right place.
+        If you need funding, or a space on the map, or to be included in the performance timetable, you will be able to request it here.</p>
+        <p>Please note that fields or sections marked with <i class="icon asterisk"></i> in a corner are required.
+        Everything else is optional, but the more information you provide, the better we will be able to help you.</p>
+      </div>
+
+      <form id="art-registration" class="ui form" method="POST" action="register-art-2016.js">
+        <div class="ui large orange segment">
+          <h2 class="ui center aligned icon header">
+              <i class="compass icon"></i> Category
+          </h2>
+          <div class="ui inverted orange message">
+            Please choose the category that best describes your art.
+            If you think that it belongs to more than one category or to none of the categories,
+            please <a href="mailto:art@goingnowhere.org">email us</a> with a short explaination of why it does not fit,
+            and we will guide you in your choice.
+            <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+          </div>
+
+          <div class="ui hidden section divider"></div>
+
+          <div class="grouped fields">
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input id="art-type-installation" checked="" name="art-type" type="radio" value="installation">
+                <label for="art-type-installation">Installation
+                <p class="ui orange description">Your art is an object or structure which is placed somewhere and is never (or rarely) moved</p>
+                </label>
+              </div>
+            </div>
+            <div class="ui divider"></div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input id="art-type-performance" name="art-type" type="radio" value="performance">
+                <label for="art-type-performance">Performance
+                <p class="ui orange description">You art is an act (such as music, theatre, dance, etc.) that you or your group perform, one or more times during the event</p>
+                </label>
+              </div>
+            </div>
+            <div class="ui divider"></div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input id="art-type-workshop" name="art-type" type="radio" value="workshop">
+                <label for="art-type-workshop">Workshop
+                <p class="ui orange description">You art consists in teaching or explaining something to others, one or more times during the event</p>
+                </label>
+              </div>
+            </div>
+            <div class="ui divider"></div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input id="art-type-car" name="art-type" type="radio" value="car">
+                <label for="art-type-car">Art Car
+                <p class="ui orange description">You art is some kind of vehicle that will be moving often, powered by an engine or by humans</p>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui large orange segment">
+          <h2 class="ui center aligned icon header">
+              <i class="announcement icon"></i> Art and Artist
+          </h2>
+          <div class="ui inverted orange message">
+            Please first introduce your art and then yourself.<br>
+            All the information you provide in this section will be used in public areas of the Nowhere site and printed materials, wherever we will need to refer to you and to describe you or your art. Examples of this, before the event, are our newsletter, the festival programme and the official map. After the event we use this information for the <a href="http://www.goingnowhere.org/artarchive/archive.htm" target="_blank">art archive.</a>.
+          </div>
+
+          <div class="grouped fields">
+            <div class="field">
+              <label>Title
+              <p class="orange description">The title of your creation, performance or workshop.</p>
+              </label>
+              <div class="ui eight wide input">
+                <input type="text"  name="art-title">
+                <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Short description
+                <p class="orange description">A brief text explaining or describing your art. Keep in mind that this will be read by all participants.
+                <p class="orange description">See <a href="http://www.goingnowhere.org/artarchive/archive.htm#2013" target="_blank">some examples</a>
+                to get an idea of what you should put here. Maximum 50 words: if you want to give us more details,
+                you will have an opportunity later in this form.</p>
+              </label>
+              <div class="ui input">
+                <textarea name="art-description" placeholder="."></textarea>
+                <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grouped fields">
+            <div class="field">
+              <label>Artist
+              <p class="orange description">This is the name you choose to use as an artist. It can be your real name or not, or even the name of your collective, band, studio etc.</p>
+              </label>
+              <div class="ui eight wide input">
+                <input type="text"  name="artist-name">
+                <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Artist introduction
+              <p class="orange description">Who are you ? Please introduce yourself to all the participants. Maximum 50 words.</p>
+              </label>
+              <div class="ui input">
+                <textarea name="artist-introduction"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Nationality
+            <p class="orange description">Where are you from ? It can be more than one nation if it describes your team better.</p>
+            </label>
+            <div class="ui eight wide input">
+              <input type="text" name="artist-nationality">
+            </div>
+          </div>
+
+          <div class="ui icon message">
+            <i class="lock icon"></i>
+            <div class="content">
+            The information after this point will only be used internally by the Nowhere team.
+            <br>No participant will have access to anything that you write from here to the end of this form.
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Previous experience
+            <p class="orange description">
+            Nowhere is a relatively harsh environments and creating art for this environment can be a
+            challenge for some. If you have not been to Nowhere before we will provide you with extra advice to ensure that you can successfully complete your piece.
+            </p>
+            </label>
+            <div class="ui checkbox">
+              <input type="checkbox" id="artist-been-nowhere" name="artist-been-nowhere" value="yes">
+              <label for="artist-been-nowhere">I have been to Nowhere before</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui large orange segment art-type-block if-installation">
+          <h2 class="ui center aligned icon header">
+            <i class="cubes icon"></i>
+            Art Installation details
+          </h2>
+
+          <div class="ui orange inverted message">
+            All information in this section help us assign you an ideal location, as well as suggest you any changes
+            in your project that might be required to comply with local regulations and safety requirements.<br/>
+          </div>
+
+          <div class="field">
+            <label>Overview
+            <p class="orange description">
+            If you want, please give us a more detailed overview of your installation: the concept behind it,
+            how it will look and behave and any other information you would like us to know.<br>
+            If you have photos, videos or ducuments showing your work in progress, the completed piece, or any
+            additional materials you want us to see, please include links here.</p>
+            </label>
+            <div class="ui input">
+              <textarea name="install-overview"></textarea>
+            </div>
+          </div>
+
+          <h3 class="ui dividing header" style="position: relative">
+            <i class="maximize icon"></i><div class="content">Measurements</div>
+            <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+          </h3>
+
+          <div class="fields">
+            <div class="field">
+              <label>Footprint
+              <p class="orange description">How much space should we reserve for you ?
+              If your installation has a circular footprint (e.g. a dome) give us the bounding box</p>
+              </label>
+            </div>
+          </div>
+      		<div class="two fields">
+      		  <div class="field">
+      		    <div class="ui right labeled input">
+      		      <input type="text" name="install-size-x" >
+      		      <div class="ui label">meters</div>
+      		    </div>
+      		  </div>
+      		  <div class="field">
+      		    <div class="ui labeled input">
+      		      <div class="ui label">by</div>
+      		      <input type="text" name="install-size-y" >
+      		      <div class="ui label">meters</div>
+      		    </div>
+      		  </div>
+      		</div>
+          <div class="field">
+            <label>Height
+              <p class="orange description">How tall is your installation ?
+              </p>
+            </label>
+            <div class="ui right labeled eight wide input">
+              <input type="text" name="install-height">
+              <div class="ui label">meters</div>
+            </div>
+          </div>
+
+
+          <h3 class="ui dividing header" style="position: relative">
+            <i class="first aid icon"></i><div class="content">Safety</div>
+            <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+          </h3>
+          <div class="ui inverted orange message">
+          <p>The local authorities require installations to comply with some safety regulations, so we have to inform you about them and ask you to agree to take responsibility for being compliant.</p>
+          <p>Please be aware that in theory inspectors might come and ask you to modify or remove your installation if it does not respect these regulations (though in practice this rarely happens). We suggest that you pay very close attention to the following points.</p>
+
+          <p>If you have any questions please <a href="mailto:art@goingnowhere.org">email us</a> and we will do our best to help you.</p>
+          </div>
+
+          <div class="grouped fields">
+            <div class="field">
+              <label>Night visibility
+                <p class="orange description">
+                  It is required that you make the edges of your installation clearly visible at night.
+                  This is a safety measure to prevent art cars and people to smash into your art in the darkness.
+                  Small LED lights at the corners will suffice for small structures, while larger structures will require perimeter light stips or spotlights
+                </p>
+              </label>
+            </div>
+            <div class="inline field">
+              <div class="ui checkbox">
+                <input type="checkbox" id="install-safety-night" name="install-safety-night" value="yes">
+                <label for="install-safety-night">I understand and I will comply with this regulation</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui hidden divider"></div>
+
+          <div class="grouped fields">
+            <div class="field">
+              <label>Elevated areas
+                <p class="orange description">
+                  All surfaces higher than 1.5 meters where a person might stand are required to have solid barriers or railings preventing
+                  people from falling off. If you can not guarantee this, you should try your best to prevent access to such surfaces.
+                </p>
+              </label>
+            </div>
+            <div class="inline field">
+              <div class="ui checkbox">
+                <input type="checkbox" id="install-safety-falls" name="install-safety-falls" value="yes">
+                <label for="install-safety-falls">I understand and I will comply with this regulation</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui hidden divider"></div>
+
+          <div class="grouped fields">
+            <div class="field">
+              <label>Fire
+                <p class="orange description">
+                  The region in which we hold the festival is at extreme risk of fires in summer. Because of this a fire ban is in effect.
+                  Any kind of solid fuel (wood, coal, etc.) and anything that creates sparks when burning is completely forbidden.
+                  Gas and liquid fuel flames are allowed at a safe distance from other structures and from the vegetation at the edges of the site.
+                </p>
+              </label>
+            </div>
+            <div class="inline field">
+              <div class="ui checkbox">
+                <input type="checkbox" id="install-safety-fire" name="install-safety-fire" value="yes">
+                <label for="install-safety-fire">I understand and I will comply with this regulation</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui hidden divider"></div>
+
+          <div class="field">
+            <label>Other potential risks ?
+            <p class="orange description">
+            Does your installation present any other potential risks to participants and/or to the environment ?
+            <br>Please describe here any other concerns that you might have, and we will try our best to help you resolve them. Leave blank if you don't foresee any problem.
+            </p>
+            </label>
+            <div class="ui input">
+              <textarea name="install-safety-other"></textarea>
+            </div>
+          </div>
+
+          <h3 class="ui dividing header" style="position: relative">
+            <i class="marker icon"></i><div class="content">Placement</div>
+          </h3>
+
+          <div class="grouped fields">
+            <div class="field">
+              <label>Would you like to be placed somewhere specific on the map ?</label>
+            </div>
+            <div class="inline field">
+              <div class="ui checkbox">
+                <input type="checkbox" id="install-placement" name="install-placement" value="yes">
+                <label for="install-placement">Yes, let me specify my placement preferences and requirements</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field install-placement-block if-yes">
+            <label>Preferences
+            <p class="orange description">
+            Do you prefer a spot that is quiet or loud ? Dark or bright ? Near or far from something else ? Do you need flat surfaces ? Anything else ?
+            We can not guarantee placement, but we will do our best to try to satisfy your needs.
+            If any of this is critical to the success of your project, it is very important you tell us here.
+            </p>
+            </label>
+            <div class="ui input">
+              <textarea name="install-placement-preferences"></textarea>
+              <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+            </div>
+          </div>
+
+          <h3 class="ui dividing header" style="position: relative">
+            <i class="lightning icon"></i><div class="content">Power</div>
+          </h3>
+          <div class="grouped fields">
+            <div class="field">
+              <label>Do you require power ?</label>
+            </div>
+            <div class="inline field">
+              <div class="ui checkbox">
+                <input type="checkbox" id="install-power" name="install-power" value="yes">
+                <label for="install-power">Yes, my installation uses electricity and I would like Nowhere to generate it for me</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="install-power-block if-yes">
+            <div class="field">
+                <label>
+                  Estimated requirement
+                  <p class="orange description">How may Watts of peak power will you need ? Please provide your best estimate.
+                  Please consult the <a href="http://www.goingnowhere.org/fr/faq/powerfaqs">Power FAQ</a> for more information.
+                </label>
+                <div class="ui eight wide right labeled input">
+                  <input type="text" name="install-power-watts">
+                  <div class="ui label">Watt</div>
+                  <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+                </div>
+            </div>
+            <div class="field">
+              <label>What are you powering ?
+              <p class="orange description">
+              Please describe what devices you want to power. Please be as specific as possible, so that we can help you
+              and place you at the correct distance from the generator to maximize efficiency and reduce losses.
+              </p>
+              </label>
+              <div class="ui input">
+                <textarea name="install-power-devices"></textarea>
+                <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="ui large orange segment art-type-block if-performance if-workshop">
+          <h2 class="ui center aligned icon header">
+            <i class="icon music art-type-block if-performance"></i>
+            <i class="icon university art-type-block if-workshop"></i>
+            <span class="art-type-block if-performance">Performance</span>
+            <span class="art-type-block if-workshop">Workshop</span> details
+          </h2>
+          <div class="ui orange inverted message">
+          Please provide us more details about what you plan to do.<br>
+          We will use this information to assign you the ideal time slot(s) in the programme of the event, the perfect location, as well as making sure all the equipment you might need is available to you.
+          </div>
+
+          <div class="field">
+            <label>Overview
+            <p class="orange description art-type-block if-performance">
+            If you want, give us a more detailed outline of what you are planning to do (concept, performance style, type of dance, etc.), what
+            type of audience are you looking for, and any other detail that you think we should know about.<br>
+            You can also show us images, videos and articles about your performance by adding links here.
+            </p>
+            <p class="orange description art-type-block if-workshop">
+            If you want, please give us a more detailed outline of what you are planning to do (concept, target audience, group size, ideal age of participants, etc.),
+            what are you expecting the participants to learn from your workshop, and any other information you think we should know about.
+            If you want to show us videos, photos or articles about your workshops, please add links here.
+            </p>
+            </label>
+            <div class="ui input">
+              <textarea name="performance-overview"></textarea>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Approximate duration
+            <p class="orange description">How long does each session last ? Please give us your best estimate.</p>
+            </label>
+            <div class="ui eight wide input">
+              <input type="text"  name="performance-duration">
+              <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Frequency
+            <p class="orange description">How many times would you like to repeat your session ?</p>
+            </label>
+            <div class="ui eight wide input">
+              <input type="text"  name="performance-frequency">
+              <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Time of the day
+            <p class="orange description">Do you prefer to be allocated day or night slots ? Morning or afternoon ? Please keep in mind that from 1pm to 5pm it usually too hot to do anything that requires phyisical activity.</p>
+            </label>
+            <div class="ui eight wide input">
+              <input type="text" name="performance-timeofday">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Equipment, safety and logistics
+            <p class="orange description">
+            Please specify any needs you have: transport, storage, lighting, equipment (we have a limited amount available), volunteers for setup and takedown, etc.
+            How much space do you need ? Do you have a preferred location ? Also let us know about any potential safety issues here.
+            </p>
+            <div class="ui input">
+              <textarea name="performance-equipment"></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="ui large orange segment art-type-block if-car">
+          <h2 class="ui center aligned icon header">
+            <i class="car icon"></i>
+            Art Car details
+          </h2>
+          <div class="ui inverted orange message">
+          Please provide us more details about your art car. Is there anything else we need to know ?
+          The more information you give us, the better we can support you and your project.<br>
+          </div>
+
+          <div class="field">
+            <label>
+            <p class="orange description">
+            Please provide us any further details about your art car.
+            How will you power it ? What is the approximate size of the vehicle ?
+            Do you require a fixed parking space somewhere ? Do you plan to have a sound system ?</p>
+            </label>
+            <div class="ui input">
+              <textarea name="performance-outline"></textarea>
+            </div>
+          </div>
+        </div>
+
+                <div class="ui large orange large orange segment">
+          <h2 class="ui center aligned icon header">
+              <i class="money icon"></i>Funding
+          </h2>
+
+          <div class="inline field">
+            <div class="ui checkbox">
+              <input type="checkbox" id="art-funding" name="art-funding" value="yes">
+              <label for="art-funding">Do you require funding ?</label>
+            </div>
+          </div>
+
+          <div class="ui inverted orange message">
+            <div class="content">
+              <div class="art-funding-block if-no">
+                <p>
+                Please check the box above if you would like to request Nowhere to provide you money to buy the materials or services
+                which you need to create your art. We can also help funding shipment of your art and/or of your equipment (but we will not contribute to your personal travel costs).</p>
+		            <p>We can only fund <b>up to 70%</b> of the total cost of your project and upon receiving a copy of the expense receipts after the event.</p>
+                <p>Please remember that Nowhere is entirely volunteer run, and everyone is buys their ticket, including artists.</p>
+              </div>
+              <div class="art-funding-block if-yes">
+                <p>We will use the information in the following sections to decide whether or not to finance your art, and how much money to assign to you.</p>
+                <p>We appreciate honesty: if we are not convinced by something you write and we are interested in your art, we will contact you and ask for more explanations, and
+                work with you to resolve any issue that might prevent you from getting funded.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="art-funding-block if-yes">
+            <div class="grouped fields">
+              <div class="field">
+                <label>Amount requested
+                <p class="orange description">How much money would you like to request ? Please keep in mind that this can not be more than
+                70% of the total cost of your art (below)</p>
+                </label>
+                <div class="ui left icon corner labeled eight wide input">
+                  <input type="text"  name="fund-request">
+                  <i class="icon euro"></i>
+                  <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+                </div>
+              </div>
+              <div class="field">
+                <label>Total estimated cost
+                <p class="orange description">How much do you expect to spend in total to create your art ?
+                If you don't know for sure please provide your best estimate.</p>
+                </label>
+                <div class="ui left icon corner labeled eight wide input">
+                  <input type="text"  name="fund-total">
+                  <i class="icon euro"></i>
+                  <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>How will you raise the rest of the funds ?
+              <p class="orange description">Feel free to leave blank if you are requesting an amount close to the full cost.</p>
+              </label>
+              <div class="ui input">
+                <textarea name="fund-raise" ></textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Budget outline
+              <p class="orange description">Please give us more details about what you are going to buy with the funds,
+              and what the estimated costs of each of these items/services are.
+              You do not need to account for every screw or piece of fabric, but at least give us a reasonable idea of
+              what we will find in the invoices that you will send us.</p>
+              </label>
+              <div class="ui input">
+                <textarea name="fund-budget"></textarea>
+                <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+              </div>
+            </div>
+
+            <div class="art-type-block if-installation if-car grouped fields">
+              <div class="field">
+                <label>Plan outline
+                <p class="orange description">Please describe to us what is your general plan, from now until the start of the event, to successfully create and deliver your art.
+                You don’t have to give us all the details: just a general overview will be enough. The more reasonable and realistic the plan is,
+                the more likely it is that we will allocate more funds to you.</p>
+                </label>
+                <div class="ui input">
+                  <textarea name="fund-plan-a"></textarea>
+                  <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Potential problems and contingency plan
+                <p class="orange description">
+                If your receive less funding than expected, are you planning to scale down your project instead of abandoning it ? If unforseen problems
+                prevent you from being able to complete your main plan, do you have a "plan B" ? This is optional, but we do feel more comfortable funding
+                art with a solid backup plan.</p>
+                </p>
+                </label>
+                <div class="ui input">
+                  <textarea name="fund-plan-b"></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        
+        <!--div class="ui large orange segment">
+          <h2 class="ui center aligned icon header">
+            <i class="trash icon"></i>
+            Leave no trace
+          </h2>
+          <div class="ui inverted orange message">
+          <div class="ui red message">A link to the explanatory part of the Leave no Trace agreement will go here.
+          The user will be invited to read it before continuing</div>
+          </div>
+
+          <div class="inline field">
+            <div class="ui checkbox">
+              <input type="checkbox" id="lnt-agree" name="lnt-agree" value="yes">
+              <label for="lnt-agree">I have read and I agree to respect the terms of the LNT agreement</label>
+            </div>
+          </div>
+        </div-->
+
+        <div class="ui large orange segment">
+          <h2 class="ui center aligned icon header">
+            <i class="mail outline icon"></i>
+            Contact
+          </h2>
+          <div class="ui inverted orange message">
+          We will need to contact you to give you important updates before, during and after the event. We also might want to reach you to
+          get more information about your art and suggest changes or improvements.
+          </div>
+
+          <div class="grouped fields">
+            <div class="field">
+              <label>Full name
+              <p class="orange description">Who is the person responsible for submitting this
+              registration <span class="art-funding-block if-yes">and funding</span> request ?<br>
+              <b>Please use your real name here</b></p>
+              </label>
+              <div class="ui eight wide input">
+                <input type="text" name="contact-name">
+                <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>
+                Email address
+                <p class="orange description">
+                  We will send all our communications to this address, so please make sure it is valid and you check it often
+                </p>
+              </label>
+              <div class="ui eight wide input">
+                <input type="text"  name="contact-email">
+                <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>
+                Phone number
+                <p class="orange description">
+                  In the two weeks before the event and during the event we will be on site and without internet access.
+                  if we need to reach you we will call you on this phone number.
+                </p>
+              </label>
+              <div class="ui eight wide input">
+                <input type="text"  name="contact-phone" placeholder="+99 123-456-7890">
+              </div>
+            </div>
+
+            <div class="field">
+              <label>
+                No Spam
+                <p class="orange description">
+                  Please prove to us you are a lovely human being: write in the box below the word "dust". Thank you.<br>We have to do this because we receive a lot of spam.
+                </p>
+              </label>
+              <div class="ui eight wide input">
+                <input type="text" name="x-nospam">
+                <div class="ui corner label"> <i class="icon asterisk"></i> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui blue submit button">Register your art !</div>
+      </form>
+
+    </div>
+  </div>
+  </body>
+  <script>
+  $(document).ready(function() {
+    // Setup all checkboxes and radios to hide and show sections
+    function setupToggle(name) {
+      function updateToggle() {
+        $("." + name + "-block").hide();
+        var value = $('input[name=' + name + ']:checked').val() || "no";
+        $("." + name + "-block.if-" + value).show();
+      }
+      $("input[name='" + name + "']").checkbox({ onChange: updateToggle });
+      updateToggle();
+    }
+
+    setupToggle('art-type');
+    setupToggle('fund-account-type');
+    setupToggle('art-funding');
+    setupToggle('install-power');
+    setupToggle('install-placement');
+
+    // Setup the form validation rules
+
+    var validationRules = {
+      "art-title": ["empty"],
+      "art-description": ["empty"],
+      "artist-name": ["empty"],
+
+      "install-size-x": ["empty"],
+      "install-size-y": ["empty"],
+      "install-height": ["empty"],
+      "install-safety-fire": ["checked"],
+      "install-safety-falls": ["checked"],
+      "install-safety-night": ["checked"],
+      "install-placement-preferences": ["empty"],
+      "install-power-watts": ["empty"],
+      "install-power-devices": ["empty"],
+
+      "performance-duration": ["empty"],
+      "performance-frequency": ["empty"],
+
+      "fund-request": ["empty"],
+      "fund-total": ["empty"],
+      "fund-budget": ["empty"],
+      "fund-plan-a": ["empty"],
+
+      "fund-paypal": ["empty"],
+      "fund-iban": ["empty"],
+      "fund-recipient-name": ["empty"],
+      "fund-address": ["empty"],
+      "fund-tax-id": ["empty"],
+
+      "contact-name": ["empty"],
+      "contact-email": ["empty", "email"],
+
+      "x-nospam": ["is[dust]"]
+    }
+
+    var prompts = {
+      "empty": "Please don't leave this empty",
+      "email": "Please use a valid email address here",
+      "checked": "Please read and confirm that you agree with this",
+      "is[dust]": "Sorry. The magic word needs to be 'dust'"
+    };
+
+    function expandValidations(type) {
+      return {
+        type: type,
+        prompt: prompts[type]
+      }
+    }
+
+    function prepareRules(rules) {
+      var prepared = {};
+      $.each(rules, function(name, validations) {
+        prepared[name] = {
+          identifier: name,
+          rules: $.map(validations, expandValidations)
+        }
+      })
+      return {fields: prepared};
+    }
+
+    // Replace each built in semantic-ui form validator with one that only validates
+    // if the field is actually visible (i.e. the user needs to fill it)
+    $.each($.fn.form.settings.rules, function(name, oldValidator) {
+      $.fn.form.settings.rules[name] = function(target, value) {
+        if ($(this).is(":hidden")) return true;
+        else return oldValidator.call(this, target, value);
+      }
+    });
+
+    $("#art-registration").form(prepareRules(validationRules)).form('inline', true)
+  });
+  </script>
+</html>

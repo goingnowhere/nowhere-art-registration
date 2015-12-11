@@ -1,0 +1,13 @@
+{
+  "name": "nowhere-art-submit",
+  "version": "0.0.1",
+  "author": "Ugo Riboni <ugo@goingnowhere.org>",
+  "description": "Submit art grant proposals",
+  "dependencies": {
+    "google-spreadsheet": "^1.0.1",
+    "q": "^1.4.1",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "license": "MIT"
+}
