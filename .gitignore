@@ -1,2 +1,9 @@
 node_modules
 server/credentials.json
+
+# these are here so that I can use
+# rsync -avs --delete --exclude-from=.gitignore
+# when deploying to the server
+.git
+.gitignore
+submissions
