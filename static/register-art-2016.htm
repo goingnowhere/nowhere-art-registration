@@ -51,7 +51,7 @@
 
           <div class="grouped fields">
             <div class="field">
-              <div class="ui radio checkbox">
+              <div class="ui radio checkbox block-toggle">
                 <input id="art-type-installation" checked="" name="art-type" type="radio" value="installation">
                 <label for="art-type-installation">Installation
                 <p class="ui orange description">Your art is an object or structure which is placed somewhere and is never (or rarely) moved</p>
@@ -60,7 +60,7 @@
             </div>
             <div class="ui divider"></div>
             <div class="field">
-              <div class="ui radio checkbox">
+              <div class="ui radio checkbox block-toggle">
                 <input id="art-type-performance" name="art-type" type="radio" value="performance">
                 <label for="art-type-performance">Performance
                 <p class="ui orange description">You art is an act (such as music, theatre, dance, etc.) that you or your group perform, one or more times during the event</p>
@@ -69,7 +69,7 @@
             </div>
             <div class="ui divider"></div>
             <div class="field">
-              <div class="ui radio checkbox">
+              <div class="ui radio checkbox block-toggle">
                 <input id="art-type-workshop" name="art-type" type="radio" value="workshop">
                 <label for="art-type-workshop">Workshop
                 <p class="ui orange description">You art consists in teaching or explaining something to others, one or more times during the event</p>
@@ -78,7 +78,7 @@
             </div>
             <div class="ui divider"></div>
             <div class="field">
-              <div class="ui radio checkbox">
+              <div class="ui radio checkbox block-toggle">
                 <input id="art-type-car" name="art-type" type="radio" value="car">
                 <label for="art-type-car">Art Car
                 <p class="ui orange description">You art is some kind of vehicle that will be moving often, powered by an engine or by humans</p>
@@ -172,7 +172,7 @@
           </div>
         </div>
 
-        <div class="ui large orange segment art-type-block if-installation">
+        <div class="ui large orange segment radio-controlled art-type-block if-installation">
           <h2 class="ui center aligned icon header">
             <i class="cubes icon"></i>
             Art Installation details
@@ -327,7 +327,7 @@
               <label>Would you like to be placed somewhere specific on the map ?</label>
             </div>
             <div class="inline field">
-              <div class="ui checkbox">
+              <div class="ui checkbox block-toggle">
                 <input type="checkbox" id="install-placement" name="install-placement" value="yes">
                 <label for="install-placement">Yes, let me specify my placement preferences and requirements</label>
               </div>
@@ -356,7 +356,7 @@
               <label>Do you require power ?</label>
             </div>
             <div class="inline field">
-              <div class="ui checkbox">
+              <div class="ui checkbox block-toggle">
                 <input type="checkbox" id="install-power" name="install-power" value="yes">
                 <label for="install-power">Yes, my installation uses electricity and I would like Nowhere to generate it for me</label>
               </div>
@@ -392,12 +392,12 @@
 
         </div>
 
-        <div class="ui large orange segment art-type-block if-performance if-workshop">
+        <div class="ui large orange segment radio-controlled art-type-block if-performance if-workshop">
           <h2 class="ui center aligned icon header">
-            <i class="icon music art-type-block if-performance"></i>
-            <i class="icon university art-type-block if-workshop"></i>
-            <span class="art-type-block if-performance">Performance</span>
-            <span class="art-type-block if-workshop">Workshop</span> details
+            <i class="icon music radio-controlled art-type-block if-performance"></i>
+            <i class="icon university radio-controlled art-type-block if-workshop"></i>
+            <span class="radio-controlled art-type-block if-performance">Performance</span>
+            <span class="radio-controlled art-type-block if-workshop">Workshop</span> details
           </h2>
           <div class="ui orange inverted message">
           Please provide us more details about what you plan to do.<br>
@@ -406,12 +406,12 @@
 
           <div class="field">
             <label>Overview
-            <p class="orange description art-type-block if-performance">
+            <p class="orange description radio-controlled art-type-block if-performance">
             If you want, give us a more detailed outline of what you are planning to do (concept, performance style, type of dance, etc.), what
             type of audience are you looking for, and any other detail that you think we should know about.<br>
             You can also show us images, videos and articles about your performance by adding links here.
             </p>
-            <p class="orange description art-type-block if-workshop">
+            <p class="orange description radio-controlled art-type-block if-workshop">
             If you want, please give us a more detailed outline of what you are planning to do (concept, target audience, group size, ideal age of participants, etc.),
             what are you expecting the participants to learn from your workshop, and any other information you think we should know about.
             If you want to show us videos, photos or articles about your workshops, please add links here.
@@ -462,7 +462,7 @@
 
         </div>
 
-        <div class="ui large orange segment art-type-block if-car">
+        <div class="ui large orange segment radio-controlled art-type-block if-car">
           <h2 class="ui center aligned icon header">
             <i class="car icon"></i>
             Art Car details
@@ -491,7 +491,7 @@
           </h2>
 
           <div class="inline field">
-            <div class="ui checkbox">
+            <div class="ui checkbox block-toggle">
               <input type="checkbox" id="art-funding" name="art-funding" value="yes">
               <label for="art-funding">Do you require funding ?</label>
             </div>
@@ -562,7 +562,7 @@
               </div>
             </div>
 
-            <div class="art-type-block if-installation if-car grouped fields">
+            <div class="radio-controlled art-type-block if-installation if-car grouped fields">
               <div class="field">
                 <label>Plan outline
                 <p class="orange description">Please describe to us what is your general plan, from now until the start of the event, to successfully create and deliver your art.
@@ -682,22 +682,28 @@
   </body>
   <script>
   $(document).ready(function() {
-    // Setup all checkboxes and radios to hide and show sections
-    function setupToggle(name) {
-      function updateToggle() {
-        $("." + name + "-block").hide();
-        var value = $('input[name=' + name + ']:checked').val() || "no";
-        $("." + name + "-block.if-" + value).show();
+    //Setup all checkboxes and radios to hide and show sections
+    function updateToggle(toggle, animate) {
+      var speed = animate ? 250 : 0;
+      if (toggle.type == 'radio') {
+        if (toggle.checked) {
+          $("." + toggle.name + "-block.radio-controlled").hide(speed)
+          $("." + toggle.name + "-block.if-" + toggle.value).show(speed);
+        }
+      } else {
+        $("." + toggle.name + "-block").hide(speed);
+        var value = toggle.checked ? toggle.value : "no";
+        $("." + toggle.name + "-block.if-" + value).show(speed);
       }
-      $("input[name='" + name + "']").checkbox({ onChange: updateToggle });
-      updateToggle();
     }
 
-    setupToggle('art-type');
-    setupToggle('fund-account-type');
-    setupToggle('art-funding');
-    setupToggle('install-power');
-    setupToggle('install-placement');
+    $(".ui.checkbox.block-toggle").checkbox({ onChange: function() { updateToggle(this, true) } });
+    $(".radio-controlled").hide()
+    $(".ui.checkbox.block-toggle").each(
+      // We need to find the checkbox inside the semantic-ui checkbox wrapper to trigger the initial setup.
+      // This is not necessary for the onChange event since the user will be clicking on the checkbox itself.
+      function(i, x) { updateToggle($(this).find("input")[0], false) }
+    )
 
     // Setup the form validation rules
 
