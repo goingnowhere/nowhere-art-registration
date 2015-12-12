@@ -1,5 +1,8 @@
-node_modules
 server/credentials.json
+
+# keep npm stuff out
+node_modules
+npm-debug.log
 
 # these are here so that I can use
 # rsync -avs --delete --exclude-from=.gitignore
