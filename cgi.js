@@ -25,7 +25,7 @@ var Request = function() {
 	
 	this.form = this.body.split("&").reduce(function(map, field) { 
 		var parts = field.split("=")
-		map[parts[0]] = decodeURIComponent(parts[1]);
+		map[parts[0]] = (parts.length > 1) ? decodeURIComponent(parts[1].replace(/\+/g, " ")) : "";
 		return map
 	}, {})
 };
@@ -82,6 +82,8 @@ var Response = function() {
 	this.end = function() {
 		this.write.apply(this, arguments);
 	};
+
+	this.stream = process.stdout;
 };
 
 var Server = function(listener, options) {
