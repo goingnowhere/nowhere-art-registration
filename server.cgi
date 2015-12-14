@@ -32,15 +32,16 @@ var server = cgi.createServer(function(request, response) {
         }
     })
 
-	// if the request was not for a server script then try to serve it as a static file
+	// if the request was not for a server script then try to serve it as a static or PDF file
     if (!processed) {
-    	target = "static/" + target
+        var isPDF = target.indexOf("pdf/") == 0;
+    	if (!isPDF) target = "static/" + target; 
         try {
             fs.accessSync(target, fs.F_OK)
             response.writeHead(200, headers);
-            response.write(fs.readFileSync(target, 'UTF-8'));
+            fs.createReadStream(target).pipe(response.stream);
         } catch (e) {
-            send404(response, target);
+            send404(response, target + e);
 		}
     }
 
