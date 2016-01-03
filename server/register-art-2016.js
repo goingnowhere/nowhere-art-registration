@@ -17,17 +17,17 @@ function saveToSpreadsheet(data) {
 
 	sheet.useServiceAccountAuth(key, function(err) {
 		if (err) return deferred.reject("ERR_AUTH:" + err);
-		console.log("Auth successful");
+		//console.log("Auth successful");
 
 		sheet.getInfo(function(err, sheet_info){
 			if (err) return deferred.reject("ERR_NO_SHEET_INFO:" + err);	
-			console.log("Sheet loaded:" + sheet_info.title);
+			//console.log("Sheet loaded:" + sheet_info.title);
 			
 			var sheet1 = sheet_info.worksheets[0]
 			
 			if (sheet1) sheet1.addRow(data, function(err, row) { 
 				if (err) return deferred.reject("ERR_SAVE_DATA:" + err);
-				console.log("Row added", row);
+				//console.log("Row added", row);
 
 				return deferred.resolve();
 			})
@@ -89,10 +89,6 @@ function sendEmail(data, attach) {
 }
 
 exports.processRequest = function(request, response) {
-	// response.write("OK")
-	// response.write(request.headers)
-	// response.write(request.form)
-
 	var now = moment(new Date());
 	now.locale('en-GB');
 	request.form['timestamp'] = now.format('YYYY-MM-DD HH:mm');
