@@ -73,7 +73,7 @@ function sendEmail(data, attach) {
 	smtp.sendMail({
 	    from: 'Nowhere Art Team <art@goingnowhere.org>',
 	    to: data['contact-email'],
-	    bcc: 'ugo@goingnowhere.org',
+	    bcc: 'art@goingnowhere.org',
 	    subject: 'You art registration for Nowhere 2016: ' + data['art-title'],
 	    text: body,
 	    attachments: [{
