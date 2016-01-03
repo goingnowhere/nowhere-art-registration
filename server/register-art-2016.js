@@ -1,6 +1,6 @@
 var sheet_id = "118ipgDJ8HKR1Pkv5bZOrS718_PQPz7gGVXY6-LQOn7w"
 var key = require('./credentials.json');
-var baseURL = "http://www.goingnowhere.org/art/submit/"
+var baseURL = "http://www.goingnowhere.org/art/register/"
 
 var GoogleSpreadsheet = require("google-spreadsheet");
 var Q = require('q');

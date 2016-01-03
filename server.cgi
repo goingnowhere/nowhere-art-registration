@@ -1,6 +1,6 @@
 #!/usr/local/bin/node
 
-var BASE = "/art/submit/"
+var BASE = "/art/register/"
 
 var cgi = require('./cgi'),
     url = require('url'),
