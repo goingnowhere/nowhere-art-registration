@@ -10,6 +10,13 @@ var nodemailer = require("nodemailer");
 var nodemailer_smtp = require("nodemailer-smtp-transport");
 var pdf = require('./create-pdf.js')
 
+function exists(path) {
+	try {
+	 	fs.accessSync(path, fs.F_OK);
+		return true;
+	} catch (e) { return false; }
+}
+
 function saveToSpreadsheet(data) {
 	var deferred = Q.defer();
 	var sheet = new GoogleSpreadsheet(sheet_id);
@@ -36,13 +43,6 @@ function saveToSpreadsheet(data) {
 	})
 
 	return deferred.promise;
-}
-
-function exists(path) {
-	try {
-	 	fs.accessSync(path, fs.F_OK);
-		return true;
-	} catch (e) { return false; }
 }
 
 function writeToJSONFile(data, name) {
