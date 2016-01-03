@@ -88,37 +88,42 @@ function sendEmail(data, attach) {
 	return deferred.promise;
 }
 
+function writeThankYou(response, emailSent, pdfPath) {
+	var html = fs.readFileSync('server/thankyou.htm', 'UTF-8')
+	var emailInfo = emailSent ?
+		"A copy of your submission has been emailed to you at (please check your spam folder too, sometimes it ends up there)." :
+		"<b>WARNING: we could not send to you an email with the copy of your submission. Please make sure you download it from the link below " +
+		"and then contact us by email at <a href='mailto:art@goingnowhere.org'>art@goingnowhere.org</a>";
+	html = html.replace("{{{MESSAGE}}}", 
+		"<h1>Thanks for registering your art !</h1>" +
+		"<p>" + emailInfo + "</p>" +
+		"<p>You can also <b><a target='_blank' href='" + pdfPath + "''>download a copy here</a></b> if you want.</p>"
+	)
+	response.write(html)
+}
+
 exports.processRequest = function(request, response) {
 	var now = moment(new Date());
 	now.locale('en-GB');
 	request.form['timestamp'] = now.format('YYYY-MM-DD HH:mm');
 
+	// fully sync
 	writeToJSONFile(request.form, now.format("YYYY_MM_DD_HH_mm_ss_SSS") + ".json");
-	
+
+	function pdfAndEmail() {
+		pdf.create(request.form, now).then(function(pdfPath) {
+			sendEmail(request.form, pdfPath).then(
+				function() { writeThankYou(response, true, pdfPath) },
+				function(error) { 
+					/* FIXME: log errors here */ 
+					writeThankYou(response, false, pdfPath) 
+				}
+			)
+		})
+	}
+
 	saveToSpreadsheet(request.form).then(
-		function(row) { response.write("Success !"); response.end(); },
-		function(err) { response.write("Error !"); response.end(); }
+		pdfAndEmail, 
+		function(err) { /* FIXME: log errors here */ pdfAndEmail() }
 	)
-
-	var pdfPath = pdf.create(request.form, now).then(function(pdfPath) {
-		sendEmail(request.form, pdfPath).then(
-			function(retval) { response.write("EMAIL SUCCESS:" + retval)},
-			function(error) { response.write("EMAIL FAIL:" + error)}
-		)
-
-		var html = fs.readFileSync('server/thankyou.htm', 'UTF-8')
-		html = html.replace("{{{MESSAGE}}}", 
-			"<h1>Thanks for registering your art !</h1>" +
-			"<p>A copy of your submission has been emailed to you (please check your spam folder too, sometimes it ends up there).</p>" +
-			"<p>You can also <b><a target='_blank' href='" + pdfPath + "''>download a copy here</a></b> if you want.</p>"
-		)
-		response.write(html)
-	})
 };
-
-
-// <h2>Epic Fail !</h2>
-// <p>We are very sorry ! We tried to save the information you submitted but something really bad happened and we could not store it anywhere.</p>
-// <p>Because of this we are printing it here, so you do not have to type it again.</p>
-// <p>Please copy the following block and send it to art@goingnowhere.org and we will fix this.</p>
-// <pre>
