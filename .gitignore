@@ -11,3 +11,6 @@ npm-debug.log
 .gitignore
 submissions
 pdf
+
+# local convenience script to deploy to server
+deploy.sh
