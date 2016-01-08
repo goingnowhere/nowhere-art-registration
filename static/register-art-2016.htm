@@ -776,7 +776,9 @@
       }
     });
 
-    $("#art-registration").form(prepareRules(validationRules)).form('inline', true)
+    var options = prepareRules(validationRules)
+    options.inline = true
+    $("#art-registration").form(options)
   });
   </script>
 </html>
