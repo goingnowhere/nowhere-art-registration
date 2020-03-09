@@ -1,6 +1,9 @@
 var pdfkit = require('pdfkit');
 var fs = require('fs');
 var Q = require('q');
+var path = require('path');
+
+var pdf_base_folder = "/usr/local/apache2/goingnowhere/art/data/register"
 
 var artTypeMap = {
 	'car': 'Art Car / Moving installation',
@@ -120,15 +123,21 @@ exports.create = function(data, now) {
 	clean_title = data['art-title'].replace(/[^a-z0-9]/ig, "_")
 	clean_artist = data['artist-name'].replace(/[^a-z0-9]/ig, "_")
 
-	if (!exists("pdf")) fs.mkdirSync("pdf")
-	var path = "pdf/" + now.format("YYYY_MM_DD_HH_mm_ss_SSS") + ".pdf"
-	var stream = fs.createWriteStream(path)
+	var tmp_path = "/tmp/art-registration-" + now.format("YYYY_MM_DD_HH_mm_ss_SSS") + ".pdf"
+	var perm_path = path.join("pdf", now.format("YYYY") + "-" + clean_title + "-" + clean_artist + ".pdf");
+	var stream = fs.createWriteStream(tmp_path)
 	pdf.pipe(stream)
 	pdf.end()
 
 	stream.on('finish', function() {
-		fs.chmodSync(path, "666")
-		deferred.resolve(path)
+		var ret = { tmp: tmp_path, perm: perm_path};
+		fs.chmodSync(tmp_path, "666");
+		try { fs.copyFileSync(tmp_path, path.join(pdf_base_folder, perm_path)); }
+		catch (e) {
+		    /* that's OK, we will attach it to the email anyway */
+		    ret.error = e;
+		}
+		deferred.resolve(ret);
 	})
 
 	return deferred.promise
