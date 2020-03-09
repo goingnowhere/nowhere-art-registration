@@ -19,14 +19,14 @@ function exists(path) {
 exports.create = function(data, now) {
 	var deferred = Q.defer()
 	// FIXME: Ideally we want to refactor all these utility functions so that they live outside of
-	// the exported method. 
+	// the exported method.
 
 	function startSection(title, text, headerSize) {
 		headerSize = headerSize || 14
 		text = text || ""
-		
+
 		pdf.text(" ")
-		
+
 		pdf.fontSize(headerSize)
 		pdf.text(title)
 
@@ -61,12 +61,12 @@ exports.create = function(data, now) {
 	pdf.text("Nowhere 2016 - Art Registration");
 	pdf.fontSize(16)
 	startSection("Submission for: " + data["art-title"] + " by " + data["artist-name"])
-	
+
 	pdf.text(" ")
 	headerText("Submission date", now.format('LLL'))
 	headerText("Art type", artTypeMap[data["art-type"]])
 	headerText("Public description", "\n" + data["art-description"])
-	
+
 	switch (data['art-type']) {
 	case "car":
 		startSectionIf("Art car details", data['car-details']);
@@ -84,7 +84,7 @@ exports.create = function(data, now) {
 	case "installation":
 		startSection("Installation details", data['install-overview'] + "\n")
 		pdf.text(" ")
-		headerText("Measurements", data['install-size-x'] + "x" + data['install-size-y'] + 
+		headerText("Measurements", data['install-size-x'] + "x" + data['install-size-y'] +
 			       " meters (height: " + data['install-height'] + ')')
 		headerText("Regulations", "You have agreed to respect local regulations, especially those concerning fire.")
 		headerTextIf("Other potential risks", data['install-safety-other'])
@@ -105,11 +105,11 @@ exports.create = function(data, now) {
 		headerTextIf("How will you raise additional funds?", "\n" + data['fund-raise'])
 		headerText("Budget outline", "\n" + data['fund-budget'])
 		headerTextIf("Plan outline", "\n" + data['fund-plan-a'])
-		headerTextIf("Alternative plan", data['fund-plan-b'])	
+		headerTextIf("Alternative plan", data['fund-plan-b'])
 	}
 
 	startSection("Artist information")
-	pdf.text(data['contact-name'] + " <" + data['contact-email'] + ">" + 
+	pdf.text(data['contact-name'] + " <" + data['contact-email'] + ">" +
 			 (data['contact-phone'] ? " phone: " + data['contact-phone'] : ""))
 	headerTextIf("From", data["artist-nationality"])
 	headerTextIf("Introduction", data['artist-introduction'])
