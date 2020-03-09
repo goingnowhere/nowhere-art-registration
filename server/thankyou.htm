@@ -1,66 +1,47 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" >
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="robots" content="index, follow" />
-  <meta name="title" content="Art Registration - Thank You !" />
-  <title>Art Registration - Thank You !</title>
-  <link href="/templates/nowhere/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  <link rel="stylesheet" href="http://www.goingnowhere.org/plugins/system/jceutilities/css/jceutilities-217.css" type="text/css" />
-  <link rel="stylesheet" href="http://www.goingnowhere.org/plugins/system/jceutilities/themes/standard/css/style.css" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="title" content="Art Registration - Thank You !" />
+    <title>Art Registration - Thank You !</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.js"></script>
+    <link href="/templates/nowhere/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+      ::-webkit-input-placeholder { color: grey; }
+      :-moz-placeholder { color: grey; opacity:  1; }
+      ::-moz-placeholder { color: grey; opacity:  1; }
+      :-ms-input-placeholder { color: grey; }
 
-	<link rel="stylesheet" href="http://www.goingnowhere.org/templates/system/css/system.css" type="text/css" />
-	<link rel="stylesheet" href="http://www.goingnowhere.org/templates/nowhere/css/template.css" type="text/css" />
-  <link rel="stylesheet" href="http://www.goingnowhere.org/forms/css/art-grant.css" type="text/css" />  
-	<!--[if lte IE 7]>
-	<link rel="stylesheet" href="http://www.goingnowhere.org/templates/nowhere/css/ie7.css" type="text/css"  />
-	<![endif]-->
+      body { margin-top: 10px }
+      p.description { font-size: 0.9em; margin-top:0px; margin-bottom: 0px; font-weight: 700}
+      p.description.orange { color: #e07b53;}
+      .input.eight.wide {width:50% !important;}
+      .ui.icon.header .icon{font-size: 2.5em;}
+      .ui.form .field>label{font-size: 1em;}
+      .ui.inverted.orange.message { color: black }
+      .icon.asterisk { color: black }
+      .ui.orange.segment { margin-top: 2.5em }
+      .ui.public.segment { border-left: 6px solid #50cc26; }
+    </style>
 </head>
-
 <body id="page_bg">
-	<div id="top">
-		<div id="homelink"><a href="http://www.goingnowhere.org"><h1>Nowhere</h1></a></div>
-	</div>
-	<div id="nav">
-	<ul id="mainlevel-nav"><li><a href="/" class="mainlevel-nav" >Home</a></li></ul>
-	</div>
-	<div id="maincontent">
-		<div id="side_left"></div>
-		<div id="side_right"></div>
-		<table border="0" cellspacing="0" cellpadding="0" id="innercontent">
-			<TR>
-				<td align="left" valign="top">
-				<div>
-					<table class="contentpaneopen">
-					<tr>
-					<td  width="100%">
-					</td>
-					</tr>
-					</table>
+<div class="ui centered stackable grid">
+    <div class="nine wide column">
 
-					<table class="contentpaneopen">
-					<tr>
-						<td></td>
-					</tr>
-					<tr>
-					<td valign="top">
-						<div id="container">
-							<div class="info">
-								{{{MESSAGE}}}
-								<p>You can email the Art team at <a href="mailto:art@goingnowhere.org">art@goingnowhere.org</a> with any questions, or if you need help.</p>
-								<p><a href="http://www.goingnowhere.org/en/artandinnovation/artgrant">Back to the art grants page</a> </p>
-								<br/>
-							</div>
-					 </div>
-					</table>
-				</div>
-				</td>
-			</TR>
-		</table>
-	</div>
-
-	<div id="footer">
-	Copyright &#169; 2013-2015 Goingnowhere.org | <a href="/en/privacy-policy">Privacy Policy</a>
-	</div>
+      <h1 class="ui center aligned humongous header" style="font-size: 3em;">
+	Nowhere Art Registration
+      </h1>
+      <div class="ui deep stacked orange segment">
+	<h2 class="ui center aligned icon header">
+            <i class="check circle outline icon"></i>
+            Done
+        </h2>
+	<p>{{{MESSAGE}}}</p>
+	<p>You can email the Art team at <a href="mailto:art@goingnowhere.org">art@goingnowhere.org</a> with any questions, or if you need help.</p>
+	<p><a href="http://www.goingnowhere.org/en/artandinnovation/artgrant">Back to the art grants page</a> </p>
+      </div>
+    </div>
 </body>
 </html>
