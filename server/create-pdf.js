@@ -47,7 +47,7 @@ exports.create = function(data, now) {
 		for (var i = 1; i < texts.length; i++) pdf.text(texts[i])
 	}
 
-	function checkbox(label, value) { headerText(label + "?", value ? "Yes" : "No") }
+	function checkbox(label, value) { headerText(label, value) } // ? "Yes" : "No") }
 	function headerTextIf(header, text, alternate) {
 		if (text) headerText(header, text)
 		else if (alternate) headerText(header, alternate)
@@ -58,7 +58,7 @@ exports.create = function(data, now) {
 	pdf.font('Helvetica')
 	pdf.fontSize(18)
 	pdf.text(" ")
-	pdf.text("Nowhere 2016 - Art Registration");
+	pdf.text("Nowhere " + now.format("YYYY") + " - Art Registration");
 	pdf.fontSize(16)
 	startSection("Submission for: " + data["art-title"] + " by " + data["artist-name"])
 
@@ -87,6 +87,7 @@ exports.create = function(data, now) {
 		headerText("Measurements", data['install-size-x'] + "x" + data['install-size-y'] +
 			       " meters (height: " + data['install-height'] + ')')
 		headerText("Regulations", "You have agreed to respect local regulations, especially those concerning fire.")
+		headerText("Responsibility", "You have agreed to take full responsiblity for your installattion and any damage that may result from it.")
 		headerTextIf("Other potential risks", data['install-safety-other'])
 		headerTextIf("Placement preference", data['install-placement-preferences'], "No preference")
 		if (data['install-power']) {
@@ -113,8 +114,11 @@ exports.create = function(data, now) {
 			 (data['contact-phone'] ? " phone: " + data['contact-phone'] : ""))
 	headerTextIf("From", data["artist-nationality"])
 	headerTextIf("Introduction", data['artist-introduction'])
-	checkbox("Previous experience at Nowhere", data['artist-been-nowhere'])
+	checkbox("First time at Nowhere ? ", data['artist-first-time'])
+	headerTextIf("Previous experience", data['artist-other-burns'])
 
+	clean_title = data['art-title'].replace(/[^a-z0-9]/ig, "_")
+	clean_artist = data['artist-name'].replace(/[^a-z0-9]/ig, "_")
 
 	if (!exists("pdf")) fs.mkdirSync("pdf")
 	var path = "pdf/" + now.format("YYYY_MM_DD_HH_mm_ss_SSS") + ".pdf"
