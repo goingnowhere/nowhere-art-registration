@@ -21,7 +21,7 @@ var Request = function() {
 
 	// FIXME: There are probably more portable ways to do this, but it works on 
 	// our FreeBSD target and I don't care enough to fix it at the moment
-	this.body = fs.readFileSync('/dev/stdin').toString();
+	this.body = fs.readFileSync(process.stdin.fd).toString();
 	
 	this.form = this.body.split("&").reduce(function(map, field) { 
 		var parts = field.split("=")
